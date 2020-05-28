@@ -1,0 +1,32 @@
+package com.javarush.task.task13.task1326;                                                                                                                                                                                                                                                                                                            
+import java.util.*;                                                                                                                                                                                                                                                          
+import java.io.*;                                                    
+import java.util.List;                                                  
+import java.util.ArrayList;                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                            
+/*                                                                                                                                                                                                                                                                                                             
+Сортировка четных чисел из файла                                                                                                                                                                                                                                                                                                            
+*/                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                            
+public class Solution {                                                                                                                                                                                                                                                                                                            
+    public static void main(String[] args) throws Exception{                                                                                                                                                                                                                                                                                                            
+         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));                                                                                                                                                                  
+          InputStream in = new FileInputStream(reader.readLine());                                                                                                                                          
+         BufferedReader fileReader = new BufferedReader(new InputStreamReader(in));                                                   
+          ArrayList<Integer> list = new ArrayList<>();                                                  
+         
+           while(fileReader.ready()){                                                                                                                                                                                                 
+           int i = Integer.parseInt(fileReader.readLine());                                                   
+            if(i % 2 == 0)                                                  
+            list.add(i); 
+            
+        }                                               
+           Collections.sort(list);
+            for(Integer i : list){
+                System.out.println(i);
+        }                                                  
+      
+       fileReader.close();                                                                   
+                                                                                                                                                                                                           
+    }                                                                                                                                                                                                                                                                                                            
+}              
