@@ -1,0 +1,28 @@
+package com.javarush.task.task15.task1516;                                                                                                    
+                                                                                                    
+/*                                                                                                     
+Значения по умолчанию                                                                                                    
+*/                                                                                                    
+                                                                                                    
+public class Solution {                                                    
+                                        
+    public int intVar; 
+    public double doubleVar;
+    public Double DoubleVar; 
+    public boolean booleanVar;
+    public Object ObjectVar;
+    public Exception ExceptionVar; 
+    public String StringVar;
+                                                                                               
+    public static void main(String[] args) {                                                                                                    
+    Solution in = new Solution(); 
+      System.out.println(in.intVar);
+        System.out.println(in.doubleVar);
+          System.out.println(in.DoubleVar);
+            System.out.println(in.booleanVar);
+          System.out.println(in.ObjectVar);
+        System.out.println(in.ExceptionVar);
+      System.out.println(in.StringVar);
+      
+     }                                                                                                    
+}                    
