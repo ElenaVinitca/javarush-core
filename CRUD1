@@ -1,0 +1,227 @@
+package com.javarush.task.task17.task1710;                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                              
+import java.util.ArrayList;                                                                                                                                                                                                                                                                                                                                                              
+import java.util.Date;                                                                                                                                                                                                                                                                                                                                                              
+import java.util.List;                                                                                                                                                                                                                                                                                                             
+import java.text.ParseException;                                                                                                                                                                                                                                                                                                            
+import java.text.SimpleDateFormat;                                                                                                                                                                                                                                                                                                            
+import java.util.Locale;                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                              
+/*                                                                                                                                                                                                                                                                                                                                                               
+CRUD                                                                                                                                                                                                                                                                                                                                                              
+*/                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                              
+public class Solution {                                                                                                                                                                                                                                                                                                                                                              
+    public static List<Person> allPeople = new ArrayList<Person>();                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                              
+    static {                                                                                                                                                                                                                                                                                                                                                              
+        allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0                                                                                                                                                                                                                                                                                                                                                              
+        allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился    id=1                                                                                                                                                                                                                                                                                                                                                              
+    }                                                                                                                                                                                                                                                                                                                                                              
+   // public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);                                                                                                                                                                                                                                                                                                                                                          
+    public static void main(String[] args) throws Exception{                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                      
+     String command = args[0];                                                                                                     
+     String inputString = "";                                                                                                     
+    for (int i = 1; i < args.length; i++) {                                                                                                     
+     inputString += args[i] + " ";                                                                                                     
+    }                                                                                                     
+      String[] inputParam = inputString.split(" ");                                                                                                    
+     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);                                                                                                    
+   switch (command) {                                                                                                    
+    case "-c": {                                                                                                     
+    String name = "";                                                                                                    
+    int count = 0;                                                                                                     
+   for (int i = 0; i < inputParam.length; i++) {                                                                                                     
+    if (!inputParam[i].equals("м") && !inputParam[i].equals("ж")) {                                                                                                     
+    name += inputParam[i] + " ";                                                                                                     
+    count++;                                                                                                    
+    } else                                                                                                     
+    break;                                                                                                     
+    }                                                                                                    
+                                                                                                                                                                                                            
+   name = name.substring(0, name.length() - 1);                                                                                                     
+    String sex = inputParam[count];                                                                                                     
+    Date birthdate = simpleDateFormat.parse(inputParam[count + 1]); if (sex.equals("м")) { allPeople.add(Person.createMale(name, birthdate));                                                                                                     
+    } else if(sex.equals("ж")) {
+    allPeople.add(Person.createFemale(name, birthdate));
+ } } 
+    System.out.println(allPeople.size() - 1); 
+    break; 
+    case "-u": {                                                                                                     
+//-u id name sex bd                                                                                                     
+    int id = Integer.parseInt(inputParam[0]);                                                                                                     
+String name = "";                                                                                                     
+int count = 1; for (int i = 1; i < inputParam.length; i++) { 
+if (!inputParam[i].equals("м") && !inputParam[i].equals("ж")) {
+ name += inputParam[i] + " "; 
+count++;
+ } else break; }
+ name = name.substring(0, name.length() - 1); 
+String sex = inputParam[count]; 
+Date birthdate = simpleDateFormat.parse(inputParam[count + 1]); 
+if (sex.equals("м")) {
+ Person p = allPeople.get(id);
+ p.setName(name); 
+p.setSex(Sex.MALE); 
+p.setBirthDate(birthdate); 
+} else if (sex.equals("ж")) { 
+Person p = allPeople.get(id);
+ p.setName(name); 
+p.setSex(Sex.FEMALE); 
+p.setBirthDate(birthdate); 
+} } 
+break; 
+case "-d": {
+ Person p = allPeople.get(Integer.parseInt(inputParam[0])); 
+p.setBirthDate(null);
+ p.setName(null); 
+p.setSex(null); 
+} 
+break; 
+case "-i": {                                                                                                     
+//id: name sex (м/ж) bd (формат 15-Apr-1990)                                                                                                     
+int id = Integer.parseInt(inputParam[0]); SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH); Person p = allPeople.get(id); String sex; if (p.getSex() == Sex.MALE) { sex = "м"; } else sex = "ж"; System.out.println(p.getName() + " " + sex + " " + sdf.format(p.getBirthDate())); } break; } }}                                                  
+                                                  
+                                                  
+   package com.javarush.task.task17.task1710;                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+import java.util.Date;                                                                                                                                                                                                        
+import java.text.SimpleDateFormat;                                                                                                                                                                                                        
+import java.util.Locale;                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+public class Person {                                                                                                                                                                                                                                                                                                                                                                                                                
+    private String name;                                                                                                                                                                                                                                                                                                                                                                                                                
+    private Sex sex;                                                                                                                                                                                                                                                                                                                                                                                                                
+    private Date birthDate;                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    private Person(String name, Sex sex, Date birthDate) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.name = name;                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.sex = sex;                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.birthDate = birthDate;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public static Person createMale(String name, Date birthDate) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        return new Person(name, Sex.MALE, birthDate);                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public static Person createFemale(String name, Date birthDate) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        return new Person(name, Sex.FEMALE, birthDate);                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public String getName() {                                                                                                                                                                                                                                                                                                                                                                                                                
+        return name;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public void setName(String name) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.name = name;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public Sex getSex() {                                                                                                                                                                                                                                                                                                                                                                                                                
+        return sex;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public void setSex(Sex sex) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.sex = sex;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public Date getBirthDate() {                                                                                                                                                                                                                                                                                                                                                                                                                
+        return birthDate;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+    public void setBirthDate(Date birthDate) {                                                                                                                                                                                                                                                                                                                                                                                                                
+        this.birthDate = birthDate;                                                                                                                                                                                                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                                                                                                                                                
+}                                                  
+                                                  
+        package com.javarush.task.task17.task1710;                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                
+public enum Sex {                                                                                                                                                                                                                                                                                                                                                                                                                
+    MALE,                                                                                                                                                                                                                                                                                                                                                                                                                
+    FEMALE                                                                                                                                                                                                                                                                                                                                                                                                                
+}                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                                                            
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                                                                 
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
