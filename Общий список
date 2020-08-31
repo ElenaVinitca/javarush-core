@@ -1,0 +1,118 @@
+package com.javarush.task.task17.task1713;                                                  
+                                                  
+import java.util.*; 
+import java.util.List;                                                 
+                                                  
+/*                                                   
+Общий список                                                  
+*/                                                  
+                                                  
+public class Solution implements List<Long>{                                                  
+    private ArrayList<Long> original = new ArrayList<Long>();                                                  
+                                                  
+    public static void main(String[] args) {                                                  
+                                                  
+    }   
+
+    //public void subList(){} 
+        public synchronized List subList(int a, int b){
+            return original.subList(a, b);
+    } 
+        public synchronized ListIterator listIterator(int a){
+            return original.listIterator(a);
+    } 
+        public synchronized ListIterator listIterator(){
+            return original.listIterator();
+    } 
+        public synchronized int lastIndexOf(Object a){
+            return original.lastIndexOf(a);
+    }
+        public synchronized int indexOf(Object a){
+            return original.indexOf(a);
+    } 
+        public synchronized Long remove(int a){
+            return original.remove(a);
+    }
+        public synchronized void add(int a, Long b){
+            original.add(a, b);
+    } 
+        public synchronized Long set(int a, Long b){
+            return original.set(a, b);
+    } 
+        public synchronized Long get(int a){
+            return original.get(a);
+    } 
+        public synchronized void clear(){
+            original.clear();
+    }
+        public synchronized boolean retainAll(Collection a){
+            return original.retainAll(a);
+    } 
+        public synchronized boolean removeAll(Collection a){
+            return original.removeAll(a);
+    } 
+        public synchronized boolean addAll(int a, Collection b){
+            return original.addAll(a, b);
+    } 
+        public synchronized boolean addAll(Collection a){
+            return original.addAll(a);
+    } 
+        public synchronized boolean containsAll(Collection a){
+            return original.containsAll(a);
+    } 
+        public synchronized boolean remove(Object a){
+            return original.remove(a);
+    } 
+        public synchronized boolean add(Long a){
+            return original.add(a);
+    } 
+        public synchronized <Long> Long[] toArray(Long[] a){
+            return original.toArray(a);
+    } 
+        public synchronized Object[] toArray(){
+            return original.toArray();
+    } 
+        public synchronized Iterator<Long> iterator(){
+            return original.iterator();
+    } 
+        public synchronized boolean contains(Object a){
+            return original.contains(a);
+    } 
+        public synchronized boolean isEmpty(){
+            return original.isEmpty();
+    } 
+        public synchronized int size(){
+            return original.size();
+}                                     
+}                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
