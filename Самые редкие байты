@@ -1,0 +1,69 @@
+package com.javarush.task.task18.task1804;                                                                                                    
+                                                                                                    
+import java.io.BufferedReader;                                                                                                    
+import java.io.FileInputStream;                                                                                                    
+import java.io.InputStreamReader;                                                                                                    
+import java.util.ArrayList; 
+import java.util.Map;
+import java.util.HashMap; 
+import java.util.Collections;                                                                                                  
+                                                                                                    
+/*                                                                                                     
+Самые редкие байты                                                                                                    
+*/                                                                                                    
+                                                                                                    
+public class Solution {                                                                                                    
+    public static void main(String[] args) throws Exception {                                                                                                    
+   
+     BufferedReader Fae = new BufferedReader(new InputStreamReader(System.in));
+ String FileName = Fae.readLine();
+ Fae.close();
+ Map<Byte, Integer> Dat = new HashMap<>();
+ ArrayList<Byte> list=new ArrayList<>(); 
+ FileInputStream inputStream = new FileInputStream(FileName);
+     while (inputStream.available() > 0) //пока остались непрочитанные байты
+ { list.add((byte)inputStream.read()); //прочитать очередной байт и записать в list
+ } inputStream.close(); // закрываем поток
+ int count;
+     for (int i = 0; i < list.size(); i++) {
+ count = Collections.frequency(list, list.get(i));
+ Dat.put(list.get(i),count);
+ }
+ int min = Collections.min(Dat.values()); 
+    for (Map.Entry<Byte,Integer> pair: Dat.entrySet()) {
+     if(pair.getValue() == min)
+ System.out.print(pair.getKey() + " "); 
+                                         
+    }
+ }                                                                                                    
+}                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
